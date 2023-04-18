@@ -56,7 +56,7 @@ function SearchBar({
           sx={{ width: '200px' }}
           required
         >
-          <MenuItem value="geladeira">Geraleira</MenuItem>
+          <MenuItem value="geladeira">Geladeira</MenuItem>
           <MenuItem value="tv">TV</MenuItem>
           <MenuItem value="celular">Celular</MenuItem>
         </Select>
