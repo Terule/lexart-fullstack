@@ -1,5 +1,5 @@
 export default interface ISearch {
   query: string;
-  web: string;
+  website: string;
   category: string;
 }

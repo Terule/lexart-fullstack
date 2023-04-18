@@ -10,10 +10,18 @@ const bpScrapper = async (query: string): Promise<IProduct[]> => {
     return products;
   }
 
-  $('.SearchCard_ProductCard__1D3ve').each((i, el) => {
+  $('[data-testid="product-card"]').each((i, el) => {
+    const link = $(el).find('.SearchCard_ProductCard_Inner__7JhKb').attr('href');
+    let image: string | undefined = '';
+    if ($(el).find('.SearchCard_ProductCard_Image__ffKkn').find('img').attr('src')?.split(':')[0] === 'data') {
+      image = $(el).find('.SearchCard_ProductCard_Image__ffKkn').find('img').attr('data-src');
+      console.log(image);
+    } else {
+      image = $(el).find('.SearchCard_ProductCard_Image__ffKkn').find('img').attr('src');
+    }
     const product = {
-      url: $(el).find('.SearchCard_ProductCard_Inner__7JhKb').attr('href') ?? '',
-      image: $(el).find('[decoding="async"]').attr('src') ?? '',
+      url: `https://www.buscape.com.br${link ?? ''}` ?? '',
+      image: image ?? '',
       price: $(el).find('[data-testid="product-card::price"]').text() ?? '',
       description: $(el).find('[data-testid="product-card::name"]').text() ?? ''
     };
